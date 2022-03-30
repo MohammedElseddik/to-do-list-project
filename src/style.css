@@ -1,0 +1,52 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+ul {
+  list-style: none;
+}
+
+.task-list {
+  padding: 0.5rem;
+}
+
+.add-task {
+  outline: none;
+  border: none;
+  padding: 0.5rem;
+}
+
+.add__task {
+  border: 1px solid gray;
+}
+
+.list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid gray;
+  padding: 0.5rem;
+}
+
+.list-container {
+  border: 1px solid gray;
+  width: 50%;
+  margin: 0 auto;
+}
+
+.clear-btn {
+  width: 100%;
+  padding: 0.5rem;
+}
+
+input[type="checkbox"] {
+  margin-right: 15px;
+}
+
+.list-description {
+  width: 100%;
+}
