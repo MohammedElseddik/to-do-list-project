@@ -14,6 +14,7 @@ ul {
   border: 1px solid gray;
   width: 50%;
   margin: 150px auto;
+  box-shadow: -5px 5px 10px 5px rgb(209, 206, 206);
 }
 
 .task-list {
