@@ -1,8 +1,8 @@
 import verticalDotsIcon from '../img/vertical dots.svg';
 
 export default class ListItem {
-    constructor(listProperties) {
-        this.listItem = listProperties;
+    constructor(newTask) {
+        this.listItem = newTask;
     }
 
     render() {

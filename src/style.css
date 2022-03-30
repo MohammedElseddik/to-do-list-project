@@ -23,9 +23,7 @@ ul {
   padding: 0.5rem;
 }
 
-.task-list img {
-  width: 25px;
-  height: 25px;
+.fa-solid {
   cursor: pointer;
 }
 
