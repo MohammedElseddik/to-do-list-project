@@ -1,6 +1,7 @@
 import _, { add } from 'lodash';
 import './style.css';
-
+import verticalDotsIcon from './img/vertical dots.svg'
+import refresh from './img/refresh.svg'
 
 class ListProperties {
 
@@ -35,9 +36,15 @@ class List {
 
     render() {
         const listBody = document.querySelector('.tasks-body');
+        const listTitle = document.querySelector('.task-list');
+        const refreshIcon = new Image();
+        refreshIcon.src = refresh;
+        listTitle.appendChild(refreshIcon);
         for (const listItem of this.ListObjects) {
-            const addTaskBtn = document.createElement('button');
-            addTaskBtn.textContent = '+';
+            //const addTaskBtn = document.createElement('button');
+            //addTaskBtn.textContent = '+';
+            const verticalDots = new Image();
+            verticalDots.src = verticalDotsIcon;
             //addTaskBtn.addEventListener('click', addTask);
             const listLi = document.createElement('li');
             const text = document.createElement('p');
@@ -48,7 +55,8 @@ class List {
             checkboxIcon.type = 'checkbox';
             listLi.appendChild(checkboxIcon);
             listLi.appendChild(text);
-            listLi.appendChild(addTaskBtn);
+            listLi.appendChild(verticalDots);
+            //listLi.appendChild(addTaskBtn);
             listBody.appendChild(listLi);
         }
     }

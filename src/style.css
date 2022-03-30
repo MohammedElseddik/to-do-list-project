@@ -10,18 +10,34 @@ ul {
   list-style: none;
 }
 
+.list-container {
+  border: 1px solid gray;
+  width: 50%;
+  margin: 150px auto;
+}
+
 .task-list {
+  display: flex;
+  justify-content: space-between;
   padding: 0.5rem;
+}
+
+.task-list img {
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+}
+
+.add__task {
+  border-top: 1px solid gray;
+  border-bottom: 1px solid gray;
+  padding: 0.7rem;
 }
 
 .add-task {
   outline: none;
   border: none;
-  padding: 0.5rem;
-}
-
-.add__task {
-  border: 1px solid gray;
+  font-size: 1rem;
 }
 
 .list-item {
@@ -32,21 +48,22 @@ ul {
   padding: 0.5rem;
 }
 
-.list-container {
-  border: 1px solid gray;
-  width: 50%;
-  margin: 0 auto;
-}
-
-.clear-btn {
-  width: 100%;
-  padding: 0.5rem;
-}
-
 input[type="checkbox"] {
   margin-right: 15px;
 }
 
 .list-description {
   width: 100%;
+}
+
+.list-item img {
+  width: 15px;
+  height: 35px;
+  cursor: grab;
+}
+
+.clear-btn {
+  width: 100%;
+  padding: 0.5rem;
+  cursor: pointer;
 }
