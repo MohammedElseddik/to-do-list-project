@@ -1,13 +1,18 @@
 import './style.css';
+import '@fortawesome/fontawesome-free/js/fontawesome'
+import '@fortawesome/fontawesome-free/js/solid'
+import '@fortawesome/fontawesome-free/js/regular'
+import '@fortawesome/fontawesome-free/js/brands'
 import List from './modules/List.js';
 
-const list = new List();
-console.log(list.ListObjects);
 
+
+const list = new List();
 const addTaskBtn = document.querySelector('.add-btn');
-console.log(addTaskBtn)
 addTaskBtn.addEventListener('click', (event) => {
     event.preventDefault();
     list.addTask();
-    list.render();
+    console.log(list.ListObjects);
 });
+
+window.addEventListener('DOMContentLoaded', list.render());

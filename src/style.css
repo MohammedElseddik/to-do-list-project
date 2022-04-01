@@ -44,7 +44,7 @@ ul {
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid gray;
-  padding: 0.5rem;
+  padding: 0 0.5rem;
 }
 
 input[type="checkbox"] {
@@ -53,6 +53,8 @@ input[type="checkbox"] {
 
 .list-description {
   width: 100%;
+  height: 100%;
+  padding: 0.5rem;
 }
 
 .list-item img {
@@ -65,4 +67,16 @@ input[type="checkbox"] {
   width: 100%;
   padding: 0.5rem;
   cursor: pointer;
+}
+
+.trash-icon {
+  margin: 0 10px;
+}
+
+.selected {
+  background-color: yellow;
+}
+
+.hidden {
+  display: none;
 }
