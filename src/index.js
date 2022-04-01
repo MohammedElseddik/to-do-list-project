@@ -8,8 +8,8 @@ import '@fortawesome/fontawesome-free/js/brands.js';
 const list = new List();
 const addTaskBtn = document.querySelector('.add-btn');
 addTaskBtn.addEventListener('click', (event) => {
-    event.preventDefault();
-    list.addTask();
+  event.preventDefault();
+  list.addTask();
 });
 
 window.addEventListener('DOMContentLoaded', list.render());
