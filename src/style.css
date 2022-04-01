@@ -23,9 +23,9 @@ ul {
   padding: 0.5rem;
 }
 
-.task-list img {
-  width: 25px;
-  height: 25px;
+.fa-solid {
+  width: 32px;
+  height: 32px;
   cursor: pointer;
 }
 
@@ -46,7 +46,7 @@ ul {
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid gray;
-  padding: 0.5rem;
+  padding: 0 0.5rem;
 }
 
 input[type="checkbox"] {
@@ -54,7 +54,12 @@ input[type="checkbox"] {
 }
 
 .list-description {
+  border: none;
+  outline: none;
+  background: none;
   width: 100%;
+  height: 100%;
+  padding: 0.5rem;
 }
 
 .list-item img {
@@ -67,4 +72,16 @@ input[type="checkbox"] {
   width: 100%;
   padding: 0.5rem;
   cursor: pointer;
+}
+
+.trash-icon {
+  margin: 0 10px;
+}
+
+.selected {
+  background-color: yellow;
+}
+
+.hidden {
+  display: none;
 }

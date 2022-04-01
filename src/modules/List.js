@@ -1,53 +1,63 @@
-import ListProperties from './ListProperties.js';
-import verticalDotsIcon from '../img/vertical dots.svg';
-import refresh from '../img/refresh.svg';
+import NewTask from './NewTask.js';
+import ListItem from './List item.js';
 
 export default class List {
-    ListObjects = [
-      new ListProperties(
-        'complete the project',
-        true,
-        0,
-      ),
+  constructor() {
+    this.ListObjects = localStorage.getItem('list') === null ? [] : JSON.parse(localStorage.getItem('list'));
+  }
 
-      new ListProperties(
-        'read the book',
-        true,
-        1,
-      ),
+  addTask() {
+    const addTaskInput = document.querySelector('.add-task');
+    const listform = document.querySelector('.add__task');
+    if (addTaskInput.value.trim().length === 0) return;
+    this.ListObjects.push(new NewTask(addTaskInput.value, false));
+    listform.reset();
+    this.render();
+    localStorage.setItem('list', JSON.stringify(this.ListObjects));
+  }
 
-      new ListProperties(
-        'learn more about react',
-        false,
-        2,
-      ),
-    ]
+  selectTask(event, listLi, verticalDotsIcon, trashIcon) {
+    if (event.target.classList.contains('list-description')) {
+      listLi.classList.toggle('selected');
+      trashIcon.classList.toggle('hidden');
+      this.editTask(event.target);
+    } else if (event.target.classList.contains('trash-icon')) {
+      this.deleteTask(listLi, trashIcon);
+    }
+  }
+
+  deleteTask(listLi, trashIcon) {
+    listLi.remove();
+    this.ListObjects.splice(trashIcon.id, 1);
+    this.render();
+    localStorage.setItem('list', JSON.stringify(this.ListObjects));
+  }
+
+  editTask(editEventTarget) {
+    editEventTarget.toggleAttribute('readonly');
+    editEventTarget.addEventListener('keyup', () => {
+      /* eslint-disable */
+            for (const [i, item] of this.ListObjects.entries()) {
+                if (parseInt(editEventTarget.parentElement.id) === i) {
+                    item.description = editEventTarget.value;
+                }
+            }
+            localStorage.setItem('list', JSON.stringify(this.ListObjects));
+        });
+    }
 
     render() {
-      const listBody = document.querySelector('.tasks-body');
-      const listTitle = document.querySelector('.task-list');
-      const refreshIcon = new Image();
-      refreshIcon.src = refresh;
-      listTitle.appendChild(refreshIcon);
-      /* eslint-disable */
-        for (const listItem of this.ListObjects) {
-            // const addTaskBtn = document.createElement('button');
-            // addTaskBtn.textContent = '+';
-            const verticalDots = new Image();
-            verticalDots.src = verticalDotsIcon;
-            // addTaskBtn.addEventListener('click', addTask);
-            const listLi = document.createElement('li');
-            const text = document.createElement('p');
-            text.textContent = listItem.description;
-            text.className = 'list-description';
-            listLi.className = 'list-item';
-            const checkboxIcon = document.createElement('input');
-            checkboxIcon.type = 'checkbox';
-            listLi.appendChild(checkboxIcon);
-            listLi.appendChild(text);
-            listLi.appendChild(verticalDots);
-            // listLi.appendChild(addTaskBtn);
+        const listBody = document.querySelector('.tasks-body');
+        listBody.innerHTML = '';
+        /* eslint-disable */
+        for (const [i, listObject] of this.ListObjects.entries()) {
+            listObject.index = i + 1;
+            const listItem = new ListItem(listObject);
+            const listLi = listItem.render(i);
             listBody.appendChild(listLi);
+            const verticalDotsIcon = listLi.querySelector('.vertical-dots-icon');
+            const trashIcon = listLi.querySelector('.trash-icon');
+            listLi.addEventListener('click', (event) => { this.selectTask(event, listLi, verticalDotsIcon, trashIcon) });
         }
     }
 }
