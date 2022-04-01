@@ -31,7 +31,6 @@ export default class List {
         this.ListObjects.splice(trashIcon.id, 1);
         this.render();
         localStorage.setItem('list', JSON.stringify(this.ListObjects));
-        console.log(this.ListObjects);
     }
 
     editTask(editEventTarget) {

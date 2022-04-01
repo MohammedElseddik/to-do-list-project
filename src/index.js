@@ -10,7 +10,6 @@ const addTaskBtn = document.querySelector('.add-btn');
 addTaskBtn.addEventListener('click', (event) => {
     event.preventDefault();
     list.addTask();
-    console.log(list.ListObjects);
 });
 
 window.addEventListener('DOMContentLoaded', list.render());
