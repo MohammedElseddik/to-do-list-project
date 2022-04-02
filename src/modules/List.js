@@ -15,7 +15,6 @@ export default class List {
     this.render();
     localStorage.setItem('list', JSON.stringify(this.ListObjects));
     this.completedStausCheck();
-    console.log(this.ListObjects);
   }
 
   selectTask(event, listLi, verticalDotsIcon, trashIcon) {
@@ -54,6 +53,7 @@ export default class List {
         checkboxs.forEach((element, index) => {
             //localStorage.setItem(checkboxs[index].id, checkboxs[i].checked);
             element.addEventListener('change', () => {
+                /* eslint-disable */
                 for (const listObject of this.ListObjects) {
                     if (element.checked) {
                         this.ListObjects[parseInt(element.id) - 1].completed = true;
@@ -71,6 +71,7 @@ export default class List {
     }
 
     checkboxsStatus(checkboxs) {
+        /* eslint-disable */
         for (const item of this.ListObjects) {
             if (item.completed === true) {
                 checkboxs[item.index - 1].setAttribute('checked', '');
@@ -86,7 +87,6 @@ export default class List {
     clearCompletedTasks() {
         const clearBtn = document.querySelector('.clear-btn');
         clearBtn.addEventListener('click', () => {
-            console.log('hello')
             this.ListObjects = this.ListObjects.filter((item) => {
                 return item.completed === false;
             })
@@ -96,9 +96,7 @@ export default class List {
     }
 
     deleteAllTasks() {
-        console.log('dellllllllete')
         const deleteAllBtn = document.querySelector('.refresh');
-        console.log(deleteAllBtn);
         deleteAllBtn.addEventListener('click', (event) => {
             event.preventDefault();
             this.ListObjects = [];
