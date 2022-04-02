@@ -30,6 +30,9 @@ ul {
 }
 
 .add__task {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   border-top: 1px solid gray;
   border-bottom: 1px solid gray;
   padding: 0.7rem;
