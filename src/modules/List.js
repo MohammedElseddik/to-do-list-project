@@ -14,6 +14,7 @@ export default class List {
         listform.reset();
         this.render();
         localStorage.setItem('list', JSON.stringify(this.ListObjects));
+        this.completedStausCheck();
     }
 
     selectTask(event, listLi, verticalDotsIcon, trashIcon) {
@@ -31,6 +32,7 @@ export default class List {
         this.ListObjects.splice(trashIcon.id, 1);
         this.render();
         localStorage.setItem('list', JSON.stringify(this.ListObjects));
+        this.completedStausCheck();
     }
 
     editTask(editEventTarget) {
@@ -63,6 +65,7 @@ export default class List {
                 localStorage.setItem('list', JSON.stringify(this.ListObjects));
             });
         })
+        this.checkboxsStatus(checkboxs);
         return checkboxs;
     }
 
@@ -76,6 +79,19 @@ export default class List {
                 checkboxs[item.index - 1].parentElement.classList.remove('line');
             }
         }
+        this.clearCompletedTasks();
+    }
+
+    clearCompletedTasks() {
+        const clearBtn = document.querySelector('.clear-btn');
+        clearBtn.addEventListener('click', () => {
+            console.log('hello')
+            this.ListObjects = this.ListObjects.filter((item) => {
+                return item.completed === false;
+            })
+            localStorage.setItem('list', JSON.stringify(this.ListObjects));
+            this.render();
+        })
     }
 
     render() {
