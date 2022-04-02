@@ -14,6 +14,7 @@ export default class List {
     listform.reset();
     this.render();
     localStorage.setItem('list', JSON.stringify(this.ListObjects));
+    this.completedStausCheck();
   }
 
   selectTask(event, listLi, verticalDotsIcon, trashIcon) {
@@ -31,6 +32,7 @@ export default class List {
     this.ListObjects.splice(trashIcon.id, 1);
     this.render();
     localStorage.setItem('list', JSON.stringify(this.ListObjects));
+    this.completedStausCheck();
   }
 
   editTask(editEventTarget) {
@@ -44,6 +46,63 @@ export default class List {
             }
             localStorage.setItem('list', JSON.stringify(this.ListObjects));
         });
+    }
+
+    completedStausCheck() {
+        const checkboxs = document.querySelectorAll('.checkbox');
+        checkboxs.forEach((element, index) => {
+            //localStorage.setItem(checkboxs[index].id, checkboxs[i].checked);
+            element.addEventListener('change', () => {
+                /* eslint-disable */
+                for (const listObject of this.ListObjects) {
+                    if (element.checked) {
+                        this.ListObjects[parseInt(element.id) - 1].completed = true;
+                        element.parentElement.classList.add('line');
+                    } else {
+                        this.ListObjects[parseInt(element.id) - 1].completed = false;
+                        element.parentElement.classList.remove('line');
+                    }
+                }
+                localStorage.setItem('list', JSON.stringify(this.ListObjects));
+            });
+        })
+        this.checkboxsStatus(checkboxs);
+        return checkboxs;
+    }
+
+    checkboxsStatus(checkboxs) {
+        /* eslint-disable */
+        for (const item of this.ListObjects) {
+            if (item.completed === true) {
+                checkboxs[item.index - 1].setAttribute('checked', '');
+                checkboxs[item.index - 1].parentElement.classList.add('line');
+            } else if (item.completed === false) {
+                checkboxs[item.index - 1].removeAttribute('checked', '');
+                checkboxs[item.index - 1].parentElement.classList.remove('line');
+            }
+        }
+        this.clearCompletedTasks();
+    }
+
+    clearCompletedTasks() {
+        const clearBtn = document.querySelector('.clear-btn');
+        clearBtn.addEventListener('click', () => {
+            this.ListObjects = this.ListObjects.filter((item) => {
+                return item.completed === false;
+            })
+            localStorage.setItem('list', JSON.stringify(this.ListObjects));
+            this.render();
+        })
+    }
+
+    deleteAllTasks() {
+        const deleteAllBtn = document.querySelector('.refresh');
+        deleteAllBtn.addEventListener('click', (event) => {
+            event.preventDefault();
+            this.ListObjects = [];
+            localStorage.setItem('list', JSON.stringify(this.ListObjects));
+            this.render();
+        })
     }
 
     render() {
