@@ -19,6 +19,8 @@ export default class ListItem {
     saveBtn.className = 'save-btn hidden';
     const checkboxIcon = document.createElement('input');
     checkboxIcon.type = 'checkbox';
+    checkboxIcon.className = 'checkbox';
+    checkboxIcon.id = index + 1;
     const verticalDots = new Image();
     verticalDots.classList = 'vertical-dots-icon';
     verticalDots.id = index;
