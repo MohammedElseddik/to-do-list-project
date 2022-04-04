@@ -18,6 +18,7 @@ module.exports = {
   output: {
     filename: 'main.js',
     path: path.resolve(__dirname, 'dist'),
+    publicPath: "/to-do-list-project/",
   },
 
   module: {
